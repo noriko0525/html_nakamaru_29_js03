@@ -1,0 +1,110 @@
+body{
+    background-color: rgb(16, 201, 16);
+}
+#wrapper{
+    width: 500px;
+    margin:20px auto;
+}
+#mydata{
+    width:100%;
+    border:3px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding:10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+#name {
+	position: relative;
+	width: 50%;
+    margin: 10px 3%;
+}
+
+#name input[type=text] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 8px 0;
+	padding: 0.3em;
+	transition: 0.3s;
+    border: 1px solid rgb(255, 255, 255);
+	border-radius: 4px;
+    outline: none;
+}
+#name input[type=text]:focus {
+    border-color: rgb(190, 255, 184);
+}
+#name input[type=text] {
+	padding-left: 50px;
+}
+#icon{
+    width: 60%;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+li{
+
+}
+#chat_view{
+    margin:10px 0 0 0;
+    width:100%;
+    height: 330px;
+    overflow: hidden;
+    border:3px solid rgb(255, 255, 255);
+    background-color: white;
+    border-radius: 10px;
+    padding:10px;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+textarea{
+    width: 100%;
+    border:none;
+}
+#chat_input{
+    margin:10px 0 0 0;
+    width:100%;
+    border:3px solid rgb(255, 255, 255);
+    background-color: white;
+    border-radius: 10px;
+    padding:10px;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+textarea{
+    width: 80%;
+    border:none;
+    border:1px solid rgb(199, 199, 199);
+}
+#output{
+    width: 100%;
+}
+
+#output>div{
+    display:flex;
+    padding-top:10px;
+}
+#output span{
+    display: block;
+}
+.chat_img{
+    text-align: center;
+    width: 50px;
+    font-size: 12px;
+    margin-right: 20px;
+}
+.chat_txt{
+    width: 200px;
+    font-size: 12px;
+}
+#chat_input button{
+    margin-left:20px;
+}

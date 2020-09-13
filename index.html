@@ -5,9 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
     <title>第3回目課題</title>
 </head>
 <body>
-    
+<div id="wrapper">
+    <div id="mydata">
+        <div id="name">
+            <input type="text" id="uname" placeholder="お名前">
+            <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <div id="icon">
+            <ul>
+                <li class="img" data-img="0"><img src="img/buke.png" width="50"></li>
+                <li class="img" data-img="1"><img src="img/tuku.jpg" width="50"></li>
+                <li class="img" data-img="2"><img src="img/caram.png" width="50"></li>
+                <li class="img" data-img="1"><img src="img/tuku.jpg" width="50"></li>
+                <li class="img" data-img="2"><img src="img/caram.png" width="50"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="chat_view">
+        <div id="output"></div>
+    </div>
+    <div id="chat_input">
+        <textarea id="text" cols="30" rows="2"></textarea><button id="send">送信</button>
+    </div>
+</div>
+
+
+        
+
+
+<!-- 以下Firebase -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAyDzWcjN-zVc0p2Kz2eLla5yBREK6d-7A",
+    authDomain: "dev17-95585.firebaseapp.com",
+    databaseURL: "https://dev17-95585.firebaseio.com",
+    projectId: "dev17-95585",
+    storageBucket: "dev17-95585.appspot.com",
+    messagingSenderId: "437993499620",
+    appId: "1:437993499620:web:c9c62f09d24f49120675f1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+//   変数設定
+  const ref = firebase.database().ref();
+//アイコン処理
+let d=0;
+let img = ["buke.png","tuku.jpg","caram.png"];
+$('.img').on('click',function(){
+    d = $(this).attr("data-img");
+    })
+
+// 送信
+$("#send").on("click",function(){
+    const uname = $("#uname").val();
+    const text = $("#text").val();
+    const msg = {
+        uname : uname,
+        text : text,
+        icon :d
+    };
+    ref.push(msg);
+    const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
+    lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
+    console.log(msg);
+})
+//受信
+ref.on("child_added",function(data){
+    const v = data.val();
+    const k = data.key;
+    const h = '<div><span class="chat_img"><img src="img/'+img[v.icon]+'" width="50"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
+    $("#output").append(h);
+})
+$("#text").on(".click",function(e){
+    console.log(e);
+    console.log($(this).outerHTML);
+});
+</script> 
 </body>
 </html>
