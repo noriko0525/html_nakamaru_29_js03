@@ -34,9 +34,6 @@
 </div>
 
 
-        
-
-
 <!-- 以下Firebase -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
@@ -60,47 +57,46 @@
 //   変数設定
   const ref = firebase.database().ref();
 
-
 //アイコン処理
-let d=0;
-let img = ["buke.png","tuku.jpg","caram.png"];
-$('.img').on('click',function(){
-    d = $(this).attr("data-img");
+    let d=0;
+    let img = ["buke.png","tuku.jpg","caram.png"];
+    $('.img').on('click',function(){
+        d = $(this).attr("data-img");
+        })
+    // ボタンclickとEnterで送信
+    $("#text").keyup(function(e){
+        if(e.keyCode == 13){
+            inputText()
+    }
     })
-
-// 送信
-$("#text").keyup(function(e){
-    if(e.keyCode == 13){
+    $("#send").on("click",function(e){
         inputText()
-}
-})
-$("#send").on("click",function(e){
-    inputText()
-});
-function inputText(){
-    const uname = $("#uname").val();
-    const text = $("#text").val();
-    const msg = {
-        uname : uname,
-        text : text,
-        icon :d
-    };
-    ref.push(msg);
-    $('#text').val("");
-    const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
-    lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
-}
-//受信
-ref.on("child_added",function(data){
-    const v = data.val();
-    const k = data.key;
-    const h = '<div><span class="chat_img"><img src="img/'+img[v.icon]+'" width="50"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
-    $("#output").append(h);
-})
-// $("#text").on(".click",function(e){
-//     console.log(e);
-//     console.log($(this).outerHTML);
-// });
+    });
+
+    function inputText(){
+        const uname = $("#uname").val();
+        const text = $("#text").val();
+        const msg = {
+            uname : uname,
+            text : text,
+            icon :d
+        };
+        ref.push(msg);
+        $('#text').val("");
+        const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
+        lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
+    }
+    //受信
+    ref.on("child_added",function(data){
+        const v = data.val();
+        const k = data.key;
+        const h = '<div><span class="chat_img"><img src="img/'+img[v.icon]+'" width="30"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
+        $("#output").append(h);
+        const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
+        lastElement.scrollIntoView({behavior: "auto"})//最後の要素が見えるまでスクロール
+    })
+    
+
 </script> 
 </body>
 </html>
