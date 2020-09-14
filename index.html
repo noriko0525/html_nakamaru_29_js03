@@ -59,6 +59,8 @@
   firebase.initializeApp(firebaseConfig);
 //   変数設定
   const ref = firebase.database().ref();
+
+
 //アイコン処理
 let d=0;
 let img = ["buke.png","tuku.jpg","caram.png"];
@@ -67,7 +69,15 @@ $('.img').on('click',function(){
     })
 
 // 送信
-$("#send").on("click",function(){
+$("#text").keyup(function(e){
+    if(e.keyCode == 13){
+        inputText()
+}
+})
+$("#send").on("click",function(e){
+    inputText()
+});
+function inputText(){
     const uname = $("#uname").val();
     const text = $("#text").val();
     const msg = {
@@ -76,10 +86,10 @@ $("#send").on("click",function(){
         icon :d
     };
     ref.push(msg);
+    $('#text').val("");
     const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
     lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
-    console.log(msg);
-})
+}
 //受信
 ref.on("child_added",function(data){
     const v = data.val();
@@ -87,10 +97,10 @@ ref.on("child_added",function(data){
     const h = '<div><span class="chat_img"><img src="img/'+img[v.icon]+'" width="50"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
     $("#output").append(h);
 })
-$("#text").on(".click",function(e){
-    console.log(e);
-    console.log($(this).outerHTML);
-});
+// $("#text").on(".click",function(e){
+//     console.log(e);
+//     console.log($(this).outerHTML);
+// });
 </script> 
 </body>
 </html>
