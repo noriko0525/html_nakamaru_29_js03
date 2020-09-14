@@ -52,27 +52,32 @@
     messagingSenderId: "437993499620",
     appId: "1:437993499620:web:c9c62f09d24f49120675f1"
   };
-  // Initialize Firebase
+// Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 //   変数設定
   const ref = firebase.database().ref();
-
+$(function(){
 //アイコン処理
     let d=0;
     let img = ["buke.png","tuku.jpg","caram.png"];
     $('.img').on('click',function(){
         d = $(this).attr("data-img");
         })
-    // ボタンclickとEnterで送信
+// ボタンclickとEnterで送信
     $("#text").keyup(function(e){
         if(e.keyCode == 13){
+            if($("#uname").val() == ""){
+                alert("名前を入力してください")
+                return false;
+            }else{;
             inputText()
+        };
     }
     })
     $("#send").on("click",function(e){
         inputText()
     });
-
+//送信処理
     function inputText(){
         const uname = $("#uname").val();
         const text = $("#text").val();
@@ -85,17 +90,29 @@
         $('#text').val("");
         const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
         lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
+        localStorage.setItem('name',uname);
     }
-    //受信
-    ref.on("child_added",function(data){
+//受信
+    ref.limitToLast(10).on("child_added",function(data){
         const v = data.val();
-        const k = data.key;
-        const h = '<div><span class="chat_img"><img src="img/'+img[v.icon]+'" width="30"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
-        $("#output").append(h);
+        const k = v.uname;
+        const m = v.text;
+        if (k == $('#uname').val()){
+            const h = '<div class=" mydata"><span class="chat_img"><img src="img/'+img[v.icon]+'" width="30"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
+            $("#output").append(h);
+        }else{
+            const h = '<div class="yourdata"><span class="chat_img"><img src="img/'+img[v.icon]+'" width="30"><span class="name">'+v.uname+'</span></span><span class="chat_txt">'+v.text+'</span></div>';
+            $("#output").append(h);
+        }
         const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
         lastElement.scrollIntoView({behavior: "auto"})//最後の要素が見えるまでスクロール
     })
-    
+//リロード
+$(function (){
+    var preNameData = localStorage.getItem("name");
+    $('#uname').val(preNameData);
+});
+});
 
 </script> 
 </body>

@@ -115,3 +115,9 @@ textarea{
 #chat_input button{
     margin-left:20px;
 }
+.yourdata{
+    background-color: thistle !important;
+}
+.mydata{
+    background-color: rgb(124, 214, 250) !important;
+}
