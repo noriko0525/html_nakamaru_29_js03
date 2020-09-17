@@ -17,11 +17,11 @@
         </div>
         <div id="icon">
             <ul>
-                <li class="img" data-img="0"><img src="img/buke.png" width="50"></li>
-                <li class="img" data-img="1"><img src="img/tuku.jpg" width="50"></li>
-                <li class="img" data-img="2"><img src="img/caram.png" width="50"></li>
-                <li class="img" data-img="1"><img src="img/tuku.jpg" width="50"></li>
-                <li class="img" data-img="2"><img src="img/caram.png" width="50"></li>
+                <li class="img" data-img="0"><img src="img/tanjiro.png" width="50"></li>
+                <li class="img" data-img="1"><img src="img/nezuko.png" width="50"></li>
+                <li class="img" data-img="2"><img src="img/zenitsu.png" width="50"></li>
+                <li class="img" data-img="3"><img src="img/inosuke.png" width="50"></li>
+                <li class="img" data-img="4"><img src="img/tomioka.png" width="50"></li>
             </ul>
         </div>
     </div>
@@ -59,9 +59,10 @@
 $(function(){
 //アイコン処理
     let d=0;
-    let img = ["buke.png","tuku.jpg","caram.png"];
+    let img = ["tanjiro.png","nezuko.png","zenitsu.png","inosuke.png","tomioka.png"];
     $('.img').on('click',function(){
         d = $(this).attr("data-img");
+        console.log($(this).html());
         })
 // ボタンclickとEnterで送信
     $("#text").keyup(function(e){
@@ -105,7 +106,7 @@ $(function(){
             $("#output").append(h);
         }
         const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
-        lastElement.scrollIntoView({behavior: "auto"})//最後の要素が見えるまでスクロール
+        lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
     })
 //リロード
 $(function (){
