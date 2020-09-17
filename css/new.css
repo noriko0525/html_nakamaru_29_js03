@@ -127,9 +127,12 @@ outline: none;
 }
 .chat_list{
     position: relative;
-    overflow: auto;
+    overflow-y:scroll;
     height: 300px;
 }
+/* .chat_list::-webkit-scrollbar {
+    display: none;
+  } */
 .chatme .serect_img{
     position: absolute;
     width: 75px;
