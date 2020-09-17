@@ -1,0 +1,251 @@
+body{
+    background-color: #000000;
+}
+#wrapper{
+    width: 800px;
+    margin:0 auto;
+}
+#name{
+    width: 100%;
+    margin:20px 0 0 0;
+    border:solid 3px #4b4b4b;
+    border-radius: 20px;
+    overflow: hidden;
+}
+#chat{
+    width: 100%;
+    margin:20px 0 0 0;
+    border:solid 3px #4b4b4b;
+    border-radius: 20px;
+}
+#message{
+    width: 100%;
+    margin:20px 0 0 0;
+    border:solid 3px #4b4b4b;
+    border-radius: 20px;
+}
+#you{
+    width: 350px;
+    /* float: left; */
+    margin:10px auto;
+}
+#namecommit{
+ cursor: pointer;
+}
+#namecommit{
+    border-radius: 4px;
+    width: 50px;
+    border: none;
+    height: 35px;
+    background-color: white;
+    margin: 0 0 0 5px;
+}
+#me{
+    width: 300px;
+    float: right;
+    margin:10px;
+    border:solid 3px #4b4b4b;
+}
+ul{
+    width: 460px;
+    overflow: hidden;
+    margin:0 auto;
+    padding:0;
+}
+li{
+    list-style: none;
+    float: left;
+    margin:10px;
+}
+li img{
+    width: 70px;
+    /* filter: drop-shadow(0px 0px 5px rgb(0, 162, 255)); */
+}
+#icon{
+    width: 100%;
+    float: left;
+}
+.icon{
+    cursor: pointer;
+}
+#icon li{
+    z-index: 100;
+}
+.icon:hover img{
+/* opacity: 0.6;
+transition-duration: 0.3s; 
+transform: scale(1.2) rotate(9deg);
+transition-duration: 0.5s;*/
+}
+.mouseout{
+    transform: scale(1.0) rotate(0deg);
+    transition-duration: 0.5s
+}
+.mousedown{
+    transform: scale(1.3) rotate(9deg);
+}
+.mousedown02{
+    transform: scale(0.7) rotate(0deg);
+    transition-duration: 0.5s
+}
+.mouseover{
+    transform: scale(1.2) rotate(9deg);
+    transition-duration: 0.5s
+}
+.on{
+transform: scale(1.2) rotate( 9deg );    
+}
+span.name_me{
+    font-weight: bold;
+    color:white;
+    font-size: 15px;
+}
+span.input{
+    margin: 0;
+}
+.input input[type=text] {
+font: 15px/24px sans-serif;
+box-sizing: border-box;
+/* width: 100%; */
+margin: 8px 0;
+padding: 0.3em;
+transition: 0.3s;
+border: 1px solid rgb(255, 255, 255);
+border-radius: 4px;
+outline: none;
+}
+.input input[type=text]:focus {
+    border-color: rgb(190, 255, 184);
+}
+.input input[type=text] {
+    /* padding-left: 50px; */
+}
+#chat_inner{
+    width: 95%;
+    margin: 10px auto;
+    /* background-color: teal; */
+}
+.chat_list{
+    position: relative;
+    overflow: auto;
+    height: 300px;
+}
+.chatme .serect_img{
+    position: absolute;
+    width: 75px;
+    text-align:center;
+}
+.chatme .serect_name{
+    position: absolute;
+    top:50px;
+    color:white;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+}
+.chatme,.chatyou{
+    position: relative;
+    margin:10px 0 0 0;
+}
+.chatme .serect_message{
+    position: absolute;
+    top:10px;
+    left:80px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding:10px 5px 5px;
+    font-size: 14px;
+}
+.moreHeight > .serect_message{
+    position: absolute;
+    top:10px;
+    left:80px;
+    padding:10px 5px 5px;
+}
+.chatme .serect_message:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    left: -13px;
+    border: 6px solid transparent;
+    border-right: 12px solid white;
+}
+.chatyou .serect_img{
+    position: absolute;
+    width: 75px;
+    text-align:center;
+    right: 0;
+}
+.chatyou .serect_name{
+    position: absolute;
+    top:43px;
+    color:white;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    right:0;
+}
+.chatyou .serect_message{
+    position: absolute;
+    top:10px;
+    right:80px !important;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding:10px 5px 5px;
+    display: table-cell; /* IE8から使用可能 */
+    vertical-align: middle;
+    font-size: 14px;
+}
+.chatyou .serect_message:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: -13px;
+    border: 6px solid transparent;
+    border-right: 12px solid white;
+    transform: scale(-1, 1);
+}
+.chatyou .inputDay{
+    position: absolute;
+    color:white;
+    right: 80px;
+    bottom: 0;
+    font-size: 10px;
+}
+.chatme .inputDay{
+    position: absolute;
+    color:white;
+    left: 80px;
+    bottom: 0;
+    font-size: 10px;
+}
+.serect_img img{
+    width: 50px;
+}
+#message_inner{
+    width:90%;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+}
+.input_message {
+font: 15px/24px sans-serif;
+box-sizing: border-box;
+width: 90%;
+margin: 8px 0;
+padding: 0.3em;
+transition: 0.3s;
+border: 1px solid rgb(255, 255, 255);
+border-radius: 4px;
+outline: none;
+}
+#send{
+  border-radius: 4px;
+  width: 80px;
+  border: none;
+  height: 35px;
+  background-color: white;
+  margin:0 0 0 10px;
+}
