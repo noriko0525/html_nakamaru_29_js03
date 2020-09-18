@@ -12,12 +12,11 @@
     <div id="wrapper">
         <div id="name">
             <div id="you">
-                <div>
+                <div class="youInput">
                     <span class="name_me">お名前:</span>
                     <span class="input"><input class="myNameerea" type="text"></span>
                     <button id="namecommit">確定</button>
                 </div>
-                <div></div>
             </div>
             <!-- <div id="me">
                      <span class="name_me">お名前:</span>
@@ -77,6 +76,8 @@
     const ref = firebase.database().ref();
 
     $(function(){
+    //ロード時
+
     //マイ設定
         //名前取得
         const MynameInput = "";
@@ -98,7 +99,22 @@
     //初期設定保存
         //localstrageに名前登録
         const myNameSetting = localStorage.getItem('name',MynameInput);
+        console.log("名前だよ" +myNameSetting);
+        //*機能追加名前登録の動き
         $(".myNameerea").val(myNameSetting);
+        // $("#namecommit").on('click',function(e){
+        //     const innnn = $(".myNameerea").val()
+        //     console.log(innnn);
+        //     if(innnn == ""){
+        //         console.log("お名前を登録してください");
+        //     }else if(innnn !== ""){
+        //         $('.myNameerea').val($('.input'));
+        //         $('.input').empty();
+        //         $('#namecommit').empty();
+        //         $('.input').html('<div id="nameRec">'+innnn+'</div>');
+        //         console.log("からっぽだよ"+innnn);
+        //     }
+        // }) 
         //アイコン処理
         //*アイコンの動き
         $(".icon")
@@ -119,6 +135,9 @@
         //**メッセージアイコン
         $('.icon').on('click',function(){
             d = $(this).attr("data-img");
+            if(myNameSetting == ""){
+                alert("お名前を登録してください");
+            }
         })
         //**スタンプ
         $("#mindIcon li").on('click',function(e){
@@ -219,18 +238,18 @@
             }
          })
 
-         //*吹き出しの高さ処理
+         //*吹き出しの高さ処理  ここちゃんとする
          function chatListInheight () { 
             var length = $(".serect_message").length;
             for( var i=0; i<length; i++) {
                 var r = $(".serect_message").eq(i).height();    
                 if (r <= 70){
                     $(".chat_list div").eq(i).css('height','60px');
-                }else if( $(".serect_message img").eq(i).height() > 90 && r > 69){
-                    $(".chat_list div").eq(i).css('height','100px');
-                    $(".chat_list div.chatme").eq(i).addClass('moreHeight');
-                }else{
-                $(".chat_list div").eq(i).css('height',''+r+'px');
+                }else if( $(".serect_message img").eq(i).height()  > 69){
+                    $(".chat_list div").eq(i).css('height','145px');
+                    // $(".chat_list div.chatme").eq(i).addClass('moreHeight');
+                }else if($(".serect_message img").eq(i).height() > 150){
+                $(".chat_list div").eq(i).css('height','155px');
             }
         }};
         //*スクロール処理

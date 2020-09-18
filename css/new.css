@@ -99,6 +99,7 @@ span.name_me{
     font-weight: bold;
     color:white;
     font-size: 15px;
+    margin:0 10px 0 0;
 }
 span.input{
     margin: 0;
@@ -106,13 +107,24 @@ span.input{
 .input input[type=text] {
 font: 15px/24px sans-serif;
 box-sizing: border-box;
-/* width: 100%; */
+width: 220px;
 margin: 8px 0;
 padding: 0.3em;
 transition: 0.3s;
 border: 1px solid rgb(255, 255, 255);
 border-radius: 4px;
 outline: none;
+}
+#you .youInput{
+    height: 50px;
+    display: flex;
+    align-items:center;
+}
+#nameRec{
+    width: 220px;
+    margin: 0;
+    padding: 0.3em;
+    color: white;
 }
 .input input[type=text]:focus {
     border-color: rgb(190, 255, 184);
@@ -128,11 +140,20 @@ outline: none;
 .chat_list{
     position: relative;
     overflow-y:scroll;
-    height: 300px;
+    height: 400px;
 }
-/* .chat_list::-webkit-scrollbar {
-    display: none;
-  } */
+.chat_list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .chat_list::-webkit-scrollbar-track {
+    border-radius: 5px;
+    box-shadow: 0 0 4px #aaa inset;
+  }
+  .chat_list::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #60738a;
+  }
 .chatme .serect_img{
     position: absolute;
     width: 75px;
@@ -149,6 +170,7 @@ outline: none;
 .chatme,.chatyou{
     position: relative;
     margin:10px 0 0 0;
+    width: 98%;
 }
 .chatme .serect_message{
     position: absolute;
@@ -158,6 +180,7 @@ outline: none;
     border-radius: 10px;
     padding:10px 5px 5px;
     font-size: 14px;
+    min-height: 20px;
 }
 .moreHeight > .serect_message{
     position: absolute;
