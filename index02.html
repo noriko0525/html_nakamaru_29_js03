@@ -61,15 +61,6 @@
 
     <script>
     // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyAyDzWcjN-zVc0p2Kz2eLla5yBREK6d-7A",
-        authDomain: "dev17-95585.firebaseapp.com",
-        databaseURL: "https://dev17-95585.firebaseio.com",
-        projectId: "dev17-95585",
-        storageBucket: "dev17-95585.appspot.com",
-        messagingSenderId: "437993499620",
-        appId: "1:437993499620:web:c9c62f09d24f49120675f1"
-    };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     //   変数設定
@@ -89,8 +80,22 @@
             }
         });
         $("#namecommit").on('click',function(){
+            if($(".myNameerea").val() == ""){
+                alert("名前を登録してください");
+            }
                 namePush();
         });
+        //*既登録済のアイコン
+        const NowImgId = "";
+        $(".icon").on('click',function(){
+                const NowImgId = $(this).data().img;
+                localStorage.setItem('img',NowImgId);
+                if($(".myNameerea").val() == ""){
+                    alert("名前を登録してください");
+                }
+                return;
+        });
+        //*既登録済のマイネーム
         function namePush(){
             const MynameInput =$(".myNameerea").val() ;
             localStorage.setItem('name',MynameInput);
@@ -99,23 +104,11 @@
     //初期設定保存
         //localstrageに名前登録
         const myNameSetting = localStorage.getItem('name',MynameInput);
-        console.log("名前だよ" +myNameSetting);
+        const myImgSetting = localStorage.getItem('img',NowImgId);
         //*機能追加名前登録の動き
         $(".myNameerea").val(myNameSetting);
-        // $("#namecommit").on('click',function(e){
-        //     const innnn = $(".myNameerea").val()
-        //     console.log(innnn);
-        //     if(innnn == ""){
-        //         console.log("お名前を登録してください");
-        //     }else if(innnn !== ""){
-        //         $('.myNameerea').val($('.input'));
-        //         $('.input').empty();
-        //         $('#namecommit').empty();
-        //         $('.input').html('<div id="nameRec">'+innnn+'</div>');
-        //         console.log("からっぽだよ"+innnn);
-        //     }
-        // }) 
-        //アイコン処理
+        //*アイコンの登録があったときのアイコン表示
+        $('.icon').eq(myImgSetting).addClass('mousedown')
         //*アイコンの動き
         $(".icon")
         .mouseover(function(){
@@ -124,9 +117,9 @@
         .mouseout(function(){
             $(this).removeClass("mouseover","mousedown").addClass("mouseout");
         })
-        .click(function(){
+        .click(function(){      
+            $(this).siblings().removeClass("mousedown");
             $(this).removeClass("mouseover").addClass("mousedown");
-            $(this).siblings().removeClass('mousedown');
         })
         //*メッセージアイコンの登録処理・スタンプ処理
         let d=0;
@@ -134,7 +127,7 @@
         let img = ["tanjiro.png","nezuko.png","zenitsu.png","inosuke.png","tomioka.png","happy.png","sad.png","love.png","cheer.png","ng.png",];  
         //**メッセージアイコン
         $('.icon').on('click',function(){
-            d = $(this).attr("data-img");
+                d = $(this).attr("data-img");
             if(myNameSetting == ""){
                 alert("お名前を登録してください");
             }
@@ -155,7 +148,12 @@
             }
         })
         $("#send").on("click",function(e){
-            inputText()
+            if($('.icon').hasClass("mousedown")){
+                inputText()
+            }else{
+                alert("アイコンを選んでください");
+            }
+            
         });
         $("#mindIcon li").on("click",function(e){
             inputTextStamp()
@@ -238,20 +236,14 @@
             }
          })
 
-         //*吹き出しの高さ処理  ここちゃんとする
+         //*吹き出しの高さ処理
          function chatListInheight () { 
-            var length = $(".serect_message").length;
+            var length = $(".chat_list div").length;
+            var ttt ;
             for( var i=0; i<length; i++) {
-                var r = $(".serect_message").eq(i).height();    
-                if (r <= 70){
-                    $(".chat_list div").eq(i).css('height','60px');
-                }else if( $(".serect_message img").eq(i).height()  > 69){
-                    $(".chat_list div").eq(i).css('height','145px');
-                    // $(".chat_list div.chatme").eq(i).addClass('moreHeight');
-                }else if($(".serect_message img").eq(i).height() > 150){
-                $(".chat_list div").eq(i).css('height','155px');
-            }
-        }};
+                var r = $(".serect_message").eq(i).height() + 45;
+                $('.chat_list div').eq(i).css('height',''+r+'')
+            }}; 
         //*スクロール処理
         function scrollChatboard() { 
             const lastElement = document.querySelector(".chat_list").lastElementChild//最後の要素を取得
