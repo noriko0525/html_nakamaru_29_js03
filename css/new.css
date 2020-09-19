@@ -11,18 +11,22 @@ body{
     border:solid 3px #4b4b4b;
     border-radius: 20px;
     overflow: hidden;
+    background-color: black;
 }
 #chat{
     width: 100%;
     margin:20px 0 0 0;
     border:solid 3px #4b4b4b;
+    /* background-color: #8fdcff; */
     border-radius: 20px;
+    background-color: black;
 }
 #message{
     width: 100%;
     margin:20px 0 0 0;
     border:solid 3px #4b4b4b;
     border-radius: 20px;
+    background-color: black;
 }
 #you{
     width: 350px;
@@ -93,7 +97,7 @@ transition-duration: 0.5s;*/
     transform: scale(1.2) rotate(9deg);
     transition-duration: 0.5s
 }
-.alphaImg{
+.alphImg{
     opacity: 0.5;
 }
 .on{
@@ -157,6 +161,10 @@ outline: none;
   .chat_list::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: #60738a;
+  }
+  .namechange{
+    text-align: center;
+    color: white;
   }
 .chatme{
     overflow: hidden;

@@ -61,6 +61,7 @@
 
     <script>
     // Your web app's Firebase configuration
+    
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     //   変数設定
@@ -68,7 +69,6 @@
 
     $(function(){
     //ロード時
-
     //マイ設定
         //名前取得
         const MynameInput = "";
@@ -122,20 +122,26 @@
             $(this).removeClass("mouseover").addClass("mousedown");
         })
         //*メッセージアイコンの登録処理・スタンプ処理
-        let d=0;
-        let f=0;
-        let img = ["tanjiro.png","nezuko.png","zenitsu.png","inosuke.png","tomioka.png","happy.png","sad.png","love.png","cheer.png","ng.png",];  
-        //**メッセージアイコン
-        $('.icon').on('click',function(){
-                d = $(this).attr("data-img");
-            if(myNameSetting == ""){
-                alert("お名前を登録してください");
-            }
-        })
-        //**スタンプ
-        $("#mindIcon li").on('click',function(e){
-            f = $(this).attr("data-img");
-        });
+            let d = 0;
+            let f=0;
+            let img = ["tanjiro.png","nezuko.png","zenitsu.png","inosuke.png","tomioka.png","happy.png","sad.png","love.png","cheer.png","ng.png",];  
+            //**メッセージアイコン
+            $('.icon').on('click',function(){
+                    d = $(this).attr("data-img");
+                    backgroundImageName = "bg/" + $(this).children('img').attr('src');
+                    console.log(backgroundImageName);
+                    $('body').css({
+                        'background-image' : 'url('+backgroundImageName+')',
+                        'background-repeat':'no-repeat'
+                    });
+                if(myNameSetting == ""){
+                    alert("お名前を登録してください");
+                }
+            })
+            //**スタンプ
+            $("#mindIcon li").on('click',function(e){
+                f = $(this).attr("data-img");
+            });      
     //メッセージ送受信
         //*ボタンclickとEnterで送信
         $(".input_message").keydown
@@ -210,6 +216,7 @@
             const pullNowData = pullData.pushNowData
             //受信データが自分かそれ以外か
             const myData = $(".myNameerea").val();
+            
             if(pullName == myData && PullMessage !== 1){
                 const pushChatInner = '<div class="chatme"><span class="serect_img"><img src="img/'+PullImage+'"></span><span class="serect_name">'+pullName+'</span><span class="serect_message">'+PullMessage+'</span><span class="inputDay">'+pullNowData+'</span></div>';
                 $('.chat_list').append(pushChatInner);
